@@ -1,5 +1,5 @@
 # googleMaps-search-vt
-Visual Testing with Google Maps
+Testing with Google Maps
 
 ## How to Execute the Test
 
