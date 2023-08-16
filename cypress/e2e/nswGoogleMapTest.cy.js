@@ -5,16 +5,16 @@ describe('view location by filters', () => {
         Cypress.on('uncaught:exception', (err, runnable) => {
             console.log(err);
             return false;
-          });
+        });
         cy.viewport(1280, 720);
     })
-    
+
     const location = 'Haymarket NSW, Australia';
 
     it('search for a location', () => {
         cy.visit('/');
         cy.searchLocation(location);
-        cy.waitForResultsWithinRange(30); // will wait until the closest result are above 0
+        cy.waitForResultsWithinRange(30); // will wait until the closest result are above 30
     });
 
     it('Apply all filters and validate that I can see “Result Pins” in Map', () => {
@@ -22,11 +22,11 @@ describe('view location by filters', () => {
         // filter options are already checked by default
         cy.get('button[type="submit"]').contains('Apply filters').click();
         cy.validateMapPinsInRange(30, 40); // will validate pins present in the map are between 30 and 40
-        
+
     });
 
     it('Apply "Open Space” filter and validate that I can only see “Open Space Pins” in Map', () => {
-        const optionsToUncheck = ["Walk", "Public Facility", "Point of Interest", "Event"]; 
+        const optionsToUncheck = ["Walk", "Public Facility", "Point of Interest", "Event"];
         // uncheck specific checkboxes
         cy.uncheckSpecificOptions(optionsToUncheck);
         cy.get('button[type="submit"]').contains('Apply filters').click();
